@@ -58,7 +58,6 @@ async function run() {
             const result = await servicesItems.updateOne(filter, updateObj, options)
             res.json(result)
         })
-
     }
     finally { }
 }
@@ -67,7 +66,7 @@ run().catch(console.dir)
 
 
 app.get('/', (req, res) => {
-    res.send('pastry wala server is ruuning')
+    res.send('pastryWala server is ruuning')
 });
 
 
