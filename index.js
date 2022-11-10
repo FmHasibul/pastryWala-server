@@ -45,6 +45,19 @@ async function run() {
             const result = await servicesItems.findOne(query)
             res.json(result)
         })
+        app.put('/foods/:id', async (req, res) => {
+            const id = req.params.id
+            const update = req.body;
+            const filter = { _id: ObjectId(id) }
+            const options = { upsert: true };
+            const updateObj = {
+                $set: {
+                    review: update.review
+                }
+            }
+            const result = await servicesItems.updateOne(filter, updateObj, options)
+            res.json(result)
+        })
 
     }
     finally { }
