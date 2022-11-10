@@ -4,7 +4,7 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const app = express();
 const ObjectId = require('mongodb').ObjectId;
 require('dotenv').config()
-const foods = require('./food.json')
+// const foods = require('./food.json')
 
 const port = process.env.PORT || 5000;
 
