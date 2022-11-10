@@ -30,8 +30,9 @@ async function run() {
         app.get('/foods', async (req, res) => {
 
             const query = {}
+            const limit = parseInt(req.query.limit)
             const cursor = servicesItems.find(query)
-            const services = await cursor.toArray();
+            const services = await cursor.limit(limit).toArray();
             res.send(services)
         })
         app.post('/foods', async (req, res) => {
