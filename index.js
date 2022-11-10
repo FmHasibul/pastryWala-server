@@ -2,8 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const app = express();
+const ObjectId = require('mongodb').ObjectId;
 require('dotenv').config()
-// const foods = require('./food.json')
+const foods = require('./food.json')
 
 const port = process.env.PORT || 5000;
 
@@ -13,7 +14,8 @@ app.use(cors());
 app.use(express.json());
 
 
-// https://aseleven-server.vercel.app/foods
+// 
+
 
 // pastryWala user
 // password x8JIpYbT5TUUoMOQ
@@ -31,6 +33,17 @@ async function run() {
             const cursor = servicesItems.find(query)
             const services = await cursor.toArray();
             res.send(services)
+        })
+        app.post('/foods', async (req, res) => {
+            const newService = req.body
+            const result = await servicesItems.insertOne(newService)
+            res.json(result)
+        })
+        app.get('/foods/:id', async (req, res) => {
+            const id = req.params.id
+            const query = { _id: ObjectId(id) }
+            const result = await servicesItems.findOne(query)
+            res.json(result)
         })
 
     }
